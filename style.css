@@ -1,0 +1,571 @@
+:root {
+	--color-darker-background: #090a14;
+	--color-background: #10141f;
+	--color-button: #151d28;
+	--color-hover-button: #202e37;
+	--color-text: #c7cfcc;
+	--color-highlight-text: #ebede9;
+	--color-darker-background-green: #19332d;
+	--color-background-green: #25562e;
+	--color-button-green: #468232;
+	--color-hover-button-green: #75a743;
+	--color-text-green: #a8ca58;
+	--color-highlight-text-green: #d0da91;
+}
+
+@font-face {
+	font-family: "JetBrains Mono";
+	src: url("assets/JetBrainsMono-Light.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "JetBrains Mono";
+	src: url("assets/JetBrainsMono-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+* {
+	font-family: "JetBrains Mono", monospace;
+}
+
+header {
+	background-color: var(--color-darker-background);
+	color: var(--color-text);
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+
+
+body::before{
+	content: "";
+	background-image: url("assets/bg22.png");
+	background-size: cover;
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0.2;
+}
+
+body {
+	background-color: var(--color-background);
+	color: var(--color-text);
+}
+
+footer {
+	background-color: var(--color-darker-background);
+	color: var(--color-text);
+}
+
+main {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	width: 100%;
+	margin: 0;
+	box-sizing: border-box;
+	height: 100%;
+}
+
+@media(min-width:1100px) {
+	main {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+	}
+	.divMainSegment {
+		max-height: 80%;
+		height: 80%;
+		min-height: 80%;
+	}
+	.selectToolbar {
+		display: none;
+	}
+	.divMenuDataContainerClass{
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 5px;
+	}
+	.divMenuDataCls {
+		min-width: 300px;
+		width: 100%;
+	}
+}
+@media (max-width:1099px) {
+	main {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		overflow: scroll;
+		scroll-snap-type: y mandatory;
+	}
+	.divMainSegment {
+		max-height: 100vh;
+		height: 100vh;
+		min-height: 100vh;
+		scroll-snap-align: start;
+	}
+	#divMenuToolbar {
+		display: none;
+	}
+	.divMenuDataContainerClass{
+		grid-template-columns: minmax(1fr 1fr);
+		grid-template-rows: 1fr;
+		grid-auto-flow: column;
+		overflow-x: scroll;
+		grid-auto-columns: 100%;
+		scroll-snap-type: x mandatory;
+		overflow-y: hidden;
+
+	}
+	.divMenuDataCls {
+		scroll-snap-align: center;
+	}
+}
+
+#divFullScreen{
+	position: fixed;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	z-index: 101;
+}
+
+#divImageContainer{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 10px;
+	border: 2px solid var(--color-text);
+	background-color: var(--color-darker-background);
+}
+#divImageHeader{
+	border-radius: 10px;
+	background-color: var(--color-button);
+	width: 100%;
+	box-sizing: border-box;
+	padding: 5px 15px 5px 15px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+#divImageHeader h3{
+	margin: 0;
+	flex-grow: 2;
+}
+
+#svgClose{
+	transition: all 0.3s linear;
+}
+
+#svgClose:hover{
+	color: var(--color-text-green);
+}
+
+#imgImageDisplay{
+	max-width: 90vw;
+	max-height: 90vh;
+}
+
+
+.aBtn{
+	background-color: var(--color-darker-background);
+	text-decoration: none;
+	border: 2px solid;
+	border-radius: 10px;
+	color: var(--color-text);
+	box-sizing: border-box;
+	padding: 5px;
+	transition: 0.3s linear;
+}
+.aBtn:hover{
+	background-color: var(--color-button-green);
+	color: var(--color-text-green);
+	border-color: var(--color-text-green);
+	transform: translateY(-5px);
+	
+}
+
+.divMainSegment {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: center;
+	transition: all 1s;
+	overflow: hidden;
+	margin: 10px 20px 10px 20px;
+}
+
+#divMeInfo{
+	display: flex;
+	opacity: 0;
+	flex-direction: row;
+	border: 2px solid var(--color-highlight-text);
+	box-sizing: border-box;
+	border-radius: 10px;
+	padding: 10px;
+	gap: 3em;
+	margin-top: 0;
+	justify-content: center;
+	max-width: 0;
+	transition: all 1s;
+	overflow: hidden;
+}
+
+.AnimdivMeInfo{
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	animation-name: AnimdivMeInfo;
+}
+
+@keyframes AnimdivMeInfo{
+	0% {opacity: 0; max-width: 0; margin-top: 0em;}
+	50% {opacity: 0; max-width: 0; margin-top: 3em;}
+	100% {opacity: 1; max-width: 100%; margin-top: 3em;}
+}
+
+.mainMe {
+	margin: 0;
+	padding: 0;
+	flex-grow: 0;
+	opacity: 0;
+	transition: all 0.5s;
+}
+
+#divMenuContainer{
+	border: 2px solid var(--color-highlight-text);
+	border-radius: 20px;
+	justify-content: flex-start;
+	opacity: 0;
+	transition: all 1s ease;
+}
+
+.divMenuToolbarClass{
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	align-items: center;
+	width: 100%;
+	justify-content: center;
+}
+
+
+.btnMenuToolbar{
+	background-color: var(--color-button);
+	border-radius: 10px;
+	border-style: solid;
+	color: var(--color-text);
+	padding: 5px;
+	transition: all 1s ease;
+	opacity: 0;
+}
+
+.btnMenuToolbar:hover{
+	transform: translateY(-5px);
+}
+
+.btnMenuToolbar.Selected{
+	background-color: var(--color-button-green);
+	color: var(--color-text-green);
+	border-color: var(--color-text-green);
+}
+
+.selectToolbar {
+	background-color: var(--color-button);
+	color: var(--color-text);
+	border-radius: 10px;
+	text-align: center;
+	transition: all 0.4s;
+	opacity: 0;
+}
+.selectToolbar:active{
+	background-color: var(--color-button-green);
+	color: var(--color-text-green);
+	border-color: var(--color-text-green);
+	transition: none;
+}
+
+#divMenuDataContainer{
+	margin: 5px;
+	position: relative;
+	width: 100%;
+	max-height: 100%;
+	flex-grow: 2;
+	overflow: hidden;
+	max-width: 100%;
+	transition: all 1s ease;
+}
+.divMenuDataContainerClass{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	display: none;
+
+}
+
+.divWorkExperience h4 {
+	margin: 0;
+}
+
+
+.scrollArrow{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	background-color: transparent;
+	border: 0 none;
+	color: var(--color-text);
+	display: none;
+	transition: all 1s ease-in-out;
+	z-index: 100;
+}
+.scrollArrow:active{
+	color: var(--color-text-green);
+	transition: none;
+}
+.scrollArrow.scrollRight{
+	right: 2.5em;
+}
+.scrollArrow.scrollLeft{
+	left: 2.5em;
+}
+
+.divMenuDataCls{
+	margin: 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: all 1s ease-out;
+	overflow: hidden;
+	position: relative;
+	box-sizing: border-box;
+}
+
+
+.aBtnContactMe{
+	width: 32px;
+	height: 32px;
+	max-width: 32px;
+	max-height: 32px;
+	align-self: center;
+	text-decoration: none;
+	color: var(--color-text);
+	transition: all 0.5s linear;
+	border: 0px none;
+	background-color: transparent;
+	box-sizing: border-box;
+	padding: 0px;
+}
+
+.aBtnContactMe:hover{
+	transform: translateY(-3px);
+	color: var(--color-text-green);
+}
+
+.divMenuDataHeader{
+	text-align: center;
+	box-sizing: border-box;
+	padding: 5px;
+	background-color: var(--color-background);
+	border-radius: 5px;
+	width: 100%;
+	border-style: solid;
+	overflow: hidden;
+	max-height: 5em;
+	height: 5em;
+	min-height: 5em;
+	opacity: 0;
+	white-space: nowrap;
+	text-overflow: clip;
+}
+
+.divClassCategory{
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: scroll;
+}
+
+.divClassCategoryContent{
+	flex: 1 0 auto;
+	border-radius: 10px;
+	box-sizing: border-box;
+	padding: 10px;
+	height: auto;
+	overflow: hidden;
+	border: 1px dotted var(--color-text);
+	margin: 2px 0px 0px 0px;
+	transition: all 0.5s ease-out;
+	opacity: 0;
+	max-height: 0;
+}
+
+.divClassCategoryContent > h3 {
+	text-align: center;
+}
+
+.btnCanScrollDown{
+	opacity: 0;
+	display: none;
+	background-color: transparent;
+	max-width: 32px;
+	max-height: 32px;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	right: 15px;
+	bottom: 15px;
+	border: 0px none;
+	transition: all 1s ease-in-out;
+	color: var(--color-text);
+}
+
+.btnCanScrollDown:hover{
+	margin: 0px 0px 10px 0px;
+	color: var(--color-text-green);
+
+}
+
+@keyframes btnCanScrollDownIdle{
+	0% {
+		transform: translateY(0px);
+	}
+	100% {
+		transform: translateY(-10px);
+	}
+}
+
+
+@keyframes pop {
+  0%	{	box-shadow: 0px 0px 0px 0px var(--color-text-green);}
+  50%	{	box-shadow: 0px 0px 2px 2px var(--color-highlight-text-green);}
+  100%	{	box-shadow: 0px 0px 0px 0px var(--color-text-green);}
+}
+
+:focus-visible{
+	outline: 0px;
+	box-shadow: 0px 0px 2px 2px var(--color-text-green);
+}
+
+#navBar {
+	background-color: var(--color-background-green);
+	width: 30px;
+	height: 20px;
+	position: fixed;
+	top: 30px;
+	left: 0px;
+}
+
+.divLanguage .divClassCategoryContent h4 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#navBtnIcon {
+	fill: var(--color-text-green);
+}
+#divMenuHeader{
+	opacity: 0;
+}
+
+@keyframes from-left{
+	from { opacity: 0; transform: translateX(-20px);}
+	to { opacity: 1; transform: translateX(0px);}
+}
+@keyframes from-right{
+	from { opacity: 0; transform: translateX(20px);}
+	to { opacity: 1; transform: translateX(0px);}
+}
+@keyframes from-top{
+	from { opacity: 0; transform: translateY(-20px);}
+	to { opacity: 1; transform: translateY(0px);}
+}
+@keyframes from-bottom{
+	from { opacity: 0; transform: translateX(20px);}
+	to { opacity: 1; transform: translateX(0px);}
+}
+@keyframes scale-up{
+	from { opacity: 0; transform: scale(0);}
+	to { opacity: 1; transform: scale(1);}
+}
+@keyframes fade-in{
+	from {opacity: 0;};
+	to {opacity: 1;};
+}
+@keyframes fade-out{
+	from {opacity: 1;};
+	to {opacity: 0;};
+}
+
+@keyframes scroll-down{
+	from {max-height: 0; opacity: 0;}
+	to { max-height: 200%; opacity: 1;}
+}
+@keyframes scroll-side{
+	from {max-width: 0; opacity: 0;}
+	to { max-width: 200%; opacity: 1;}
+}
+@keyframes scroll-down-reverse{
+	from {max-height: 200%; opacity: 1;}
+	to { max-height: 0; opacity: 0;}
+}
+@keyframes scroll-side-reverse{
+	from {max-width: 200%; opacity: 1;}
+	to { max-width: 0; opacity: 0;}
+}
+@keyframes scaleY-up{
+	from { opacity: 0; transform: scaleY(0);}
+	to { opacity: 1; transform: scaleY(1);}
+}
+
+.classanimate{
+	animation-duration: 0.8s;
+	animation-fill-mode: forwards;
+}
+.finished{
+	opacity: 1;
+}
+.finished-height{
+	opacity: 1;
+	max-height: 200%;
+}
+
+
+.Anim-from-left{animation-name: from-left;}
+.Anim-from-right{animation-name: from-right;}
+.Anim-from-top{animation-name: from-top;}
+.Anim-from-bottom{animation-name: from-bottom;}
+.Anim-scale-up{animation-name: scale-up;}
+.Anim-scaleY-up{animation-name: scaleY-up;}
+.Anim-fade-in{animation-name: fade-in;}
+.Anim-fade-out{animation-name: fade-out;}
+
+.Anim-scroll-side{animation-name: scroll-side;}
+.Anim-scroll-down{animation-name: scroll-down;}
+.Anim-scroll-side-reverse{animation-name: scroll-side-reverse;}
+.Anim-scroll-down-reverse{animation-name: scroll-down-reverse;}
