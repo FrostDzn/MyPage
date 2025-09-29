@@ -137,6 +137,10 @@ async function initMeAnim() {
 	await divMeInfoAnimate();
 }
 
+window.addEventListener("load", () => {
+  document.documentElement.classList.remove("firstHide")
+})
+
 if (window.matchMedia("(min-width: 1100px)").matches) {
 		initMeAnim();
 	}
