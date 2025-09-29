@@ -211,7 +211,6 @@ main {
 	box-sizing: border-box;
 	align-items: center;
 	justify-content: center;
-	transition: all 1s;
 	overflow: hidden;
 	margin: 10px 20px 10px 20px;
 }
@@ -249,7 +248,6 @@ main {
 	padding: 0;
 	flex-grow: 0;
 	opacity: 0;
-	transition: all 0.5s;
 }
 
 #divMenuContainer{
@@ -257,7 +255,6 @@ main {
 	border-radius: 20px;
 	justify-content: flex-start;
 	opacity: 0;
-	transition: all 1s ease;
 }
 
 .divMenuToolbarClass{
