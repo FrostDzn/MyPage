@@ -227,7 +227,6 @@ main {
 	margin-top: 0;
 	justify-content: center;
 	max-width: 0;
-	transition: all 1s;
 	overflow: hidden;
 }
 
