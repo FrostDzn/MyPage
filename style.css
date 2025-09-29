@@ -44,12 +44,17 @@ body {
 	height: 100vh;
 }
 
+body {
+  position: relative;
+  z-index: 0;
+
+}
 
 body::before{
 	content: "";
 	background-image: url("assets/bg22.png");
 	background-size: cover;
-	position: absolute;
+	position: fixed;
 	z-index: -1;
 	top: 0;
 	right: 0;
