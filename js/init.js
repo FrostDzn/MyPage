@@ -137,36 +137,36 @@ async function initMeAnim() {
 	await divMeInfoAnimate();
 }
 
-window.addEventListener("load", () => {
-  document.documentElement.classList.remove("firstHide")
-})
-
-if (window.matchMedia("(min-width: 1100px)").matches) {
-		initMeAnim();
-	}
-else if(window.matchMedia("(max-width: 1099px)").matches) {
-	let obs = new IntersectionObserver((entries) => {
-		entries.forEach((entry) => {
-			if(entry.isIntersecting) {
-				switch(true) {
-					case entry.target.classList.contains("mainMe"):
-						divMeAnimate(entry.target);
-						break;
-					case entry.target.id === "divMenuContainer":
-						divMenuAnimate();
-						console.log("2")
-						break;
-					case entry.target.id === "divMeInfo":
-						divMeInfoAnimate();
-						break;
-				}
-				obs.unobserve(entry.target);
-			}
-		})
-
-	})
-	divMe.forEach((elem) => obs.observe(elem));
-	obs.observe(divMenuContainer);
-	obs.observe(divMeInfo);
 	
-}
+window.addEventListener("load", () => {
+  document.documentElement.classList.remove("firstHide");
+
+  if (window.matchMedia("(min-width: 1100px)").matches) {
+      initMeAnim();
+    }
+  else if(window.matchMedia("(max-width: 1099px)").matches) {
+    let obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting) {
+          switch(true) {
+            case entry.target.classList.contains("mainMe"):
+              divMeAnimate(entry.target);
+              break;
+            case entry.target.id === "divMenuContainer":
+              divMenuAnimate();
+              console.log("2")
+              break;
+            case entry.target.id === "divMeInfo":
+              divMeInfoAnimate();
+              break;
+          }
+          obs.unobserve(entry.target);
+        }
+      })
+
+    })
+    divMe.forEach((elem) => obs.observe(elem));
+    obs.observe(divMenuContainer);
+    obs.observe(divMeInfo);
+  }
+})
