@@ -92,11 +92,16 @@ main {
 		display: none;
 	}
 	.divMenuDataContainerClass{
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fit, 1fr);
 		gap: 5px;
+		grid-template-rows: 1fr;
+		grid-auto-flow: column;
 	}
+  .divMenuDataHeader > h3 {
+    font-size: 1vw;
+
+  }
 	.divMenuDataCls {
-		min-width: 300px;
 		width: 100%;
 	}
 }
@@ -384,7 +389,9 @@ main {
 }
 
 .divMenuDataHeader{
-	text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 	box-sizing: border-box;
 	padding: 5px;
 	background-color: var(--color-background);
